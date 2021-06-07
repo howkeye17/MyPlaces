@@ -1,8 +1,9 @@
 {
   "data" : [
     {
-      "filename" : "Icon\r",
-      "idiom" : "universal"
+      "filename" : "iPhone App Icon iOS 11@3x.png",
+      "idiom" : "universal",
+      "universal-type-identifier" : "public.png"
     }
   ],
   "info" : {
