@@ -5,12 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "iPhone App Icon iOS 11@2x.png",
+      "filename" : "photo@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "iPhone App Icon iOS 11@3x.png",
+      "filename" : "photo@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

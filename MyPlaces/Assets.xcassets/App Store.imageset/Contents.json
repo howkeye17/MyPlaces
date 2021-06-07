@@ -1,16 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "iPad notification iOS 7,11.png",
+      "filename" : "App Store.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "iPad notification iOS 7,11@2x.png",
+      "filename" : "App Store-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "App Store-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
