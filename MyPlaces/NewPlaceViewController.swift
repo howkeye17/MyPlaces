@@ -11,7 +11,7 @@ class NewPlaceViewController: UITableViewController {
     
     var currentPlace: Place!
     var imageIsChanged = false
-
+    
     @IBOutlet weak var placeImage: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -35,35 +35,7 @@ class NewPlaceViewController: UITableViewController {
         
     }
     
-    func savePlace() {
-        
-        var image: UIImage?
-        
-        if imageIsChanged {
-            image = placeImage.image
-        } else {
-            image = #imageLiteral(resourceName: "imagePlaceholder")
-        }
-        
-        let imageData = image?.pngData()
-        
-        let newPlace = Place(name: placeName.text!,
-                             location: placeLocation.text,
-                             type: placeType.text,
-                             imageData: imageData,
-                             rating: Double(ratingControl.rating))
-        if currentPlace != nil {
-            try! realm.write {
-                currentPlace?.name = newPlace.name
-                currentPlace?.location = newPlace.location
-                currentPlace?.type = newPlace.type
-                currentPlace?.imageData = newPlace.imageData
-                currentPlace?.rating = newPlace.rating
-            }
-        } else {
-        StorageManager.saveObject(newPlace)
-    }
-}
+
     
     private func setupEditScreen() {
         if currentPlace != nil {
@@ -96,7 +68,45 @@ class NewPlaceViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
     
-//MARK: Table View Delegate
+    
+    //MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier != "showMap" { return }
+
+        let mapVC=segue.destination as! MapViewController
+        mapVC.place.name = placeName.text!
+        mapVC.place.location = placeLocation.text
+        mapVC.place.type = placeType.text
+        mapVC.place.imageData = placeImage.image?.pngData()
+    }
+    
+    func savePlace() {
+        
+        let image = imageIsChanged ? placeImage.image : #imageLiteral(resourceName: "imagePlaceholder")
+        let imageData = image?.pngData()
+        
+        let newPlace = Place(name: placeName.text!,
+                             location: placeLocation.text,
+                             type: placeType.text,
+                             imageData: imageData,
+                             rating: Double(ratingControl.rating))
+        if currentPlace != nil {
+            try! realm.write {
+                currentPlace?.name = newPlace.name
+                currentPlace?.location = newPlace.location
+                currentPlace?.type = newPlace.type
+                currentPlace?.imageData = newPlace.imageData
+                currentPlace?.rating = newPlace.rating
+            }
+        } else {
+            StorageManager.saveObject(newPlace)
+        }
+    }
+    
+    
+    //MARK: Table View Delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
@@ -132,14 +142,13 @@ class NewPlaceViewController: UITableViewController {
     }
     
     
-    
 }
 
 // MARK: Text Field Delegate
 
 extension NewPlaceViewController: UITextFieldDelegate {
     
-// Скрываем клавиатуру по нажатии на Done
+    // Скрываем клавиатуру по нажатии на Done
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -147,7 +156,6 @@ extension NewPlaceViewController: UITextFieldDelegate {
         
         return true
     }
-
     
     @objc private func textFieldChanged() {
         
@@ -157,18 +165,8 @@ extension NewPlaceViewController: UITextFieldDelegate {
             saveButton.isEnabled = false
         }
     }
-    
-    //MARK: Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" {
-            return
-        }
-        let mapeVC=segue.destination as! MapViewController
-        mapeVC.place = currentPlace
-    }
-    
 }
+
 
 //MARK: Work with Image
 
@@ -187,7 +185,7 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-       
+        
         placeImage.image = info[.editedImage] as? UIImage
         placeImage.contentMode = .scaleAspectFill
         placeImage.clipsToBounds = true
