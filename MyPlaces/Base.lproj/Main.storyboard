@@ -233,10 +233,27 @@
                                     <action selector="closeVC" destination="kuP-zB-gE1" eventType="touchUpInside" id="TxS-G4-ALk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDd-6Q-BCE">
+                                <rect key="frame" x="324" y="718" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xVz-s2-aIl"/>
+                                    <constraint firstAttribute="width" constant="50" id="yae-ga-lrr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="location.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="centerViewInUserLocation" destination="kuP-zB-gE1" eventType="touchUpInside" id="8nJ-Ct-0cL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Yo-Zh-Xbn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="2Yo-Zh-Xbn" firstAttribute="trailing" secondItem="oDd-6Q-BCE" secondAttribute="trailing" constant="40" id="FCW-0J-WfP"/>
+                            <constraint firstItem="2Yo-Zh-Xbn" firstAttribute="bottom" secondItem="oDd-6Q-BCE" secondAttribute="bottom" constant="40" id="HRT-JM-SS4"/>
                             <constraint firstItem="2Yo-Zh-Xbn" firstAttribute="trailing" secondItem="3mn-6t-gr5" secondAttribute="trailing" constant="40" id="IV0-NE-dPc"/>
                             <constraint firstItem="3mn-6t-gr5" firstAttribute="top" secondItem="2Yo-Zh-Xbn" secondAttribute="top" constant="40" id="Oqv-xY-emt"/>
                             <constraint firstItem="9n8-Fu-loc" firstAttribute="top" secondItem="G7h-Cf-tTO" secondAttribute="top" id="oKM-3p-5ye"/>
@@ -443,6 +460,7 @@
         <image name="camcel" width="128" height="128"/>
         <image name="emptyStar" width="255" height="256"/>
         <image name="filledStar" width="237.5" height="238"/>
+        <image name="location.circle.fill" catalog="system" width="128" height="121"/>
         <image name="map" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
